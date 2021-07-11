@@ -1,0 +1,377 @@
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| prog1              |
+| prog2              |
+| prog3              |
+| prog4              |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.10 sec)
+
+mysql> create database prog5;
+Query OK, 1 row affected (0.24 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| prog1              |
+| prog2              |
+| prog3              |
+| prog4              |
+| prog5              |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> use prog5;
+Database changed
+mysql> CREATE TABLE DEPARTMENT
+    -> (DNO VARCHAR(20) PRIMARY KEY,
+    -> DNAME VARCHAR(20),
+    -> MGRSTARTDATE DATE);
+Query OK, 0 rows affected (1.84 sec)
+
+mysql>
+mysql> CREATE TABLE EMPLOYEE
+    -> (SSN VARCHAR(20) PRIMARY KEY,
+    -> FNAME VARCHAR(20),
+    -> LNAME VARCHAR(20),
+    -> ADDRESS VARCHAR(20),
+    -> SEX CHAR(1),
+    -> SALARY INTEGER,
+    -> SUPERSSN VARCHAR(20) REFERENCES EMPLOYEE (SSN),
+    -> DNO VARCHAR(20) REFERENCES DEPARTMENT (DNO));
+Query OK, 0 rows affected (1.03 sec)
+
+mysql>
+mysql> ALTER TABLE DEPARTMENT
+    -> ADD MGRSSN VARCHAR(20) REFERENCES EMPLOYEE (SSN);
+Query OK, 0 rows affected (3.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> CREATE TABLE DLOCATION
+    -> (DLOC VARCHAR (20),
+    -> DNO VARCHAR(20) REFERENCES DEPARTMENT (DNO),
+    -> PRIMARY KEY (DNO, DLOC));
+Query OK, 0 rows affected (1.14 sec)
+
+mysql>
+mysql> CREATE TABLE PROJECT
+    -> (PNO INTEGER PRIMARY KEY,
+    -> PNAME VARCHAR(20),
+    -> PLOCATION VARCHAR(20),
+    -> DNO VARCHAR(20) REFERENCES DEPARTMENT(DNO));
+Query OK, 0 rows affected (0.70 sec)
+
+mysql>
+mysql> CREATE TABLE WORKS_ON
+    -> (HOURS INT(2),
+    -> SSN VARCHAR(20) REFERENCES EMPLOYEE(SSN),
+    -> PNO VARCHAR(20) REFERENCES PROJECT(PNO),
+    -> PRIMARY KEY (SSN, PNO));
+Query OK, 0 rows affected, 1 warning (0.75 sec)
+
+mysql>
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSECE01','JOHN','SCOTT','BANGALORE','M', 450000);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSCSE01','JAMES','SMITH','BANGALORE','M', 500000);
+Query OK, 1 row affected (0.29 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSCSE02','HEARN','BAKER','BANGALORE','M', 700000);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSCSE03','EDWARD','SCOTT','MYSORE','M', 500000);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSCSE04','PAVAN','HEGDE','MANGALORE','M', 650000);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSCSE05','GIRISH','MALYA','MYSORE','M', 450000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSCSE06','NEHA','SN','BANGALORE','F', 800000);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSACC01','AHANA','K','MANGALORE','F', 350000);
+Query OK, 1 row affected (0.35 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSACC02','SANTHOSH','KUMAR','MANGALORE','M', 300000);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSISE01','VEENA','M','MYSORE','M', 600000);
+Query OK, 1 row affected (0.22 sec)
+
+mysql> INSERT INTO EMPLOYEE (SSN, FNAME, LNAME, ADDRESS, SEX, SALARY) VALUES
+    -> ('RNSIT01','NAGESH','HR','BANGALORE','M', 500000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES ('1','ACCOUNTS','2020-01-01','RNSACC02');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES ('2','IT','2001-07-16','RNSIT01');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES ('3','ECE','2001-06-08','RNSECE01');
+Query OK, 1 row affected (0.22 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES ('4','ISE','2001-08-15','RNSISE01');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES ('5','CSE','2001-06-02','RNSCSE05');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> UPDATE EMPLOYEE SET
+    -> SUPERSSN=NULL, DNO='3'
+    -> WHERE SSN='RNSECE01';
+Query OK, 1 row affected (0.11 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> SUPERSSN='RNSCSE02', DNO='5'
+    -> WHERE SSN='RNSCSE01';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> SUPERSSN='RNSCSE03', DNO='5'
+    -> WHERE SSN='RNSCSE02';
+Query OK, 1 row affected (0.24 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> SUPERSSN='RNSCSE04', DNO='5'
+    -> WHERE SSN='RNSCSE03';
+Query OK, 1 row affected (0.11 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> DNO='5', SUPERSSN='RNSCSE05'
+    -> WHERE SSN='RNSCSE04';
+Query OK, 1 row affected (0.22 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> DNO='5', SUPERSSN='RNSCSE06'
+    -> WHERE SSN='RNSCSE05';
+Query OK, 1 row affected (0.19 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> DNO='5', SUPERSSN=NULL
+    -> WHERE SSN='RNSCSE06';
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> DNO='1', SUPERSSN='RNSACC02'
+    -> WHERE SSN='RNSACC01';
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> DNO='1', SUPERSSN=NULL
+    -> WHERE SSN='RNSACC02';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> DNO='4', SUPERSSN=NULL
+    -> WHERE SSN='RNSISE01';
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EMPLOYEE SET
+    -> DNO='2', SUPERSSN=NULL
+    -> WHERE SSN='RNSIT01';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> INSERT INTO DLOCATION VALUES ('BANGALORE', '1');
+Query OK, 1 row affected (0.25 sec)
+
+mysql> INSERT INTO DLOCATION VALUES ('BANGALORE', '2');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> INSERT INTO DLOCATION VALUES ('BANGALORE', '3');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO DLOCATION VALUES ('MANGALORE', '4');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO DLOCATION VALUES ('MANGALORE', '5');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> INSERT INTO PROJECT VALUES (100,'IOT','BANGALORE','5');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO PROJECT VALUES (101,'CLOUD','BANGALORE','5');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO PROJECT VALUES (102,'BIGDATA','BANGALORE','5');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> INSERT INTO PROJECT VALUES (103,'SENSORS','BANGALORE','3');
+Query OK, 1 row affected (0.38 sec)
+
+mysql> INSERT INTO PROJECT VALUES (104,'BANK MANAGEMENT','BANGALORE','1');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO PROJECT VALUES (105,'SALARY MANAGEMENT','BANGALORE','1');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> INSERT INTO PROJECT VALUES (106,'OPENSTACK','BANGALORE','4');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO PROJECT VALUES (107,'SMART CITY','BANGALORE','2');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (4, 'RNSCSE01', 100);
+Query OK, 1 row affected (0.20 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (6, 'RNSCSE01', 101);
+Query OK, 1 row affected (0.55 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (8, 'RNSCSE01', 102);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (10, 'RNSCSE02', 100);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (3, 'RNSCSE04', 100);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (4, 'RNSCSE05', 101);
+Query OK, 1 row affected (0.29 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (5, 'RNSCSE06', 102);
+Query OK, 1 row affected (0.40 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (6, 'RNSCSE03', 102);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (7, 'RNSECE01', 103);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (5, 'RNSACC01', 104);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (6, 'RNSACC02', 105);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (4, 'RNSISE01', 106);
+Query OK, 1 row affected (0.47 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES (10, 'RNSIT01', 107);
+Query OK, 1 row affected (0.17 sec)
+
+mysql>
+mysql> (SELECT DISTINCT P.PNO
+    -> FROM PROJECT AS P, DEPARTMENT AS D, EMPLOYEE AS E
+    -> WHERE E.DNO=D.DNO
+    -> AND D.MGRSSN=E.SSN
+    -> AND E.LNAME='SCOTT')
+    -> UNION
+    -> (SELECT DISTINCT P1.PNO
+    -> FROM PROJECT AS P1, WORKS_ON AS W, EMPLOYEE  AS E1
+    -> WHERE P1.PNO=W.PNO
+    -> AND E1.SSN=W.SSN
+    -> AND E1.LNAME='SCOTT');
++-----+
+| PNO |
++-----+
+| 100 |
+| 101 |
+| 102 |
+| 103 |
+| 104 |
+| 105 |
+| 106 |
+| 107 |
++-----+
+8 rows in set (0.02 sec)
+
+mysql>
+mysql> SELECT E.FNAME, E.LNAME, 1.1*E.SALARY AS INCR_SAL
+    -> FROM EMPLOYEE E, WORKS_ON W, PROJECT P
+    -> WHERE E.SSN=W.SSN
+    -> AND W.PNO=P.PNO
+    -> AND P.PNAME='IOT';
++-------+-------+----------+
+| FNAME | LNAME | INCR_SAL |
++-------+-------+----------+
+| JAMES | SMITH | 550000.0 |
+| HEARN | BAKER | 770000.0 |
+| PAVAN | HEGDE | 715000.0 |
++-------+-------+----------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT SUM(E.SALARY), MAX(E.SALARY), MIN(E.SALARY), AVG(E.SALARY)
+    -> FROM EMPLOYEE AS E, DEPARTMENT AS D
+    -> WHERE E.DNO=D.DNO
+    -> AND D.DNAME='ACCOUNTS';
++---------------+---------------+---------------+---------------+
+| SUM(E.SALARY) | MAX(E.SALARY) | MIN(E.SALARY) | AVG(E.SALARY) |
++---------------+---------------+---------------+---------------+
+|        650000 |        350000 |        300000 |   325000.0000 |
++---------------+---------------+---------------+---------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> SELECT D.DNO, COUNT(*)
+    -> FROM DEPARTMENT AS D, EMPLOYEE AS E
+    -> WHERE D.DNO=E.DNO
+    -> AND E.SALARY>600000
+    -> AND D.DNO IN (SELECT E1.DNO
+    -> FROM EMPLOYEE AS E1
+    -> GROUP BY E1.DNO
+    -> HAVING COUNT(*)>5)
+    -> GROUP BY D.DNO;
++-----+----------+
+| DNO | COUNT(*) |
++-----+----------+
+| 5   |        3 |
++-----+----------+
+1 row in set (0.00 sec)
+
+mysql>
