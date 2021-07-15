@@ -153,7 +153,7 @@ class AppDemo(QWidget):
         self.updateCourseCombo(0)
         self.setWindowTitle("VTU 2018 SCHEME DIGITAL LAB MANUAL BY ADARSH N")
         scriptDir = os.path.dirname(os.path.realpath(__file__))
-        self.setWindowIcon(QtGui.QIcon(scriptDir + os.path.sep + 'data\icon.ico'))
+        self.setWindowIcon(QtGui.QIcon(scriptDir + os.path.sep + 'data\ico.png'))
 
 
     def updateCourseCombo(self, index):
