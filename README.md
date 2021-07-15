@@ -1,5 +1,5 @@
 # DIGITAL-VTU-LAB-MANAUAL
-Collaborated with @NithinKumar9
+Collaborated with [@NithinKumar9](https://github.com/NithinKumar9) <br/>
 Language used:- 
         [Python](https://www.python.org/downloads/)<br/>
 Tools used:-<br/>
