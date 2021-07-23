@@ -1,0 +1,53 @@
+NOTE: IGNORE "(DOUBLE QUOTE) IN THE BELOW PROGRAM AS THE SOFTWARE USES QTextBrowser(which is a html compiler)
+"
+<!-- 3. Write a JavaScript code that displays text “TEXT-GROWING” with increasing font size in the
+interval of 100ms in RED COLOR, when the font size reaches 50pt it displays “TEXTSHRINKING”
+in BLUE color. Then the font size decreases to 5pt. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Program 3 JavaScript - Grow & Shrink Text</title>
+
+
+    <script>
+
+        var font = 0, loading;
+        function start() {
+            loading = window.setInterval("incr()", 100);
+        }
+
+        function incr() {
+            font = font + 1;
+            display.innerHTML = "TEXT-GROWING : " + font + "pt";
+            display.style.fontSize = font + "pt";
+            if (font > 50) {
+                window.clearTimeout(loading);
+                loading = window.setInterval("decr()", 100);
+            }
+            display.style.color = "red";
+        }
+        function decr() {
+            font = font - 1;
+            display.innerHTML = "TEXT-SHRINKING: " + font + "pt";
+            display.style.fontSize = font + "pt";
+            if (font == 5) {
+                window.clearTimeout(loading);
+                loading = window.setInterval("incr()", 100);
+            }
+            display.style.color = "blue";
+        }
+    </script>
+</head>
+
+<body style="background: #32c35f78;" onload="start()">
+    <center>
+        <p style="margin-top:250px" id="display"></p>
+    </center>
+</body>
+
+</html>
+"
+NOTE: IGNORE "(DOUBLE QUOTE) IN THE BELOW PROGRAM AS THE SOFTWARE USES QTextBrowser(which is a html compiler)

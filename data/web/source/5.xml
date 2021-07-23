@@ -1,0 +1,65 @@
+<!-- 5. Design an XML document to store information about a student in an engineering college
+affiliated to VTU. The information must include USN, Name, and Name of the College,
+Programme, Year of Joining, and email id. Make up sample data for 3 students. Create a CSS
+style sheet and use it to display the document.  -->
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="prog5.css" ?>
+<students>
+<student>
+<USN>USN : 1GG18CS002</USN>
+<name>NAME : ADARSH N</name>
+<college>COLLEGE : GECR</college>
+<branch>BRANCH : Computer Science and Engineering</branch>
+<year>YEAR : 2022</year>
+<e-mail>E-Mail : adarshkumar738291@gmail.com</e-mail>
+</student>
+<student>
+<USN>USN : 1GG18CS043</USN>
+<name>NAME : VINAYAK S B</name>
+<college>COLLEGE : GECR</college>
+<branch>BRANCH : Computer Science and Engineering</branch>
+<year>YEAR : 2022</year>
+<e-mail>E-Mail : bagannavarvinayak123@gmail.com</e-mail>
+</student>
+<student>
+<USN>USN : 1GG18CS028</USN>
+<name>NAME : NITHIN KUMAR B</name>
+<college>COLLEGE : GECR</college>
+<branch>BRANCH : Computer Science and Engineering </branch>
+<year>YEAR : 2022</year>
+<e-mail>E-Mail : nithinbyadav999@gmail.com</e-mail>
+</student>
+</students>
+
+
+
+
+prog5.css
+
+student{
+    display:block; margin-top:10px; color:Navy;
+    }
+    USN{
+    display:block; margin-left:10px;font-size:14pt; color:Red;
+    }
+    name{
+    display:block; margin-left:20px;font-size:14pt; color:Blue;
+    }
+    college{
+    display:block; margin-left:20px;font-size:12pt; color:Maroon;
+    }
+    branch{
+    display:block; margin-left:20px;font-size:12pt; color:Purple;
+    }
+    year{
+    display:block; margin-left:20px;font-size:14pt; color:Green;
+    }
+    e-mail{
+    display:block; margin-left:20px;font-size:12pt; color:Blue;
+    }
+    students{
+    max-width:30%;margin:auto; background-color: #cdd864;
+    }
