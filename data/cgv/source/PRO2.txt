@@ -1,3 +1,7 @@
+/**2. Design, develop, and implement the following Create and rotate a triangle about the origin and a fixed point. **/
+
+
+
 #include<GL/glut.h>
 #include<stdio.h>
 int x,y;
