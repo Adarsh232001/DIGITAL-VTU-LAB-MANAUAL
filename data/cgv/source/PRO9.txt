@@ -1,4 +1,4 @@
-// Scan-Line algorithm for filling a polygon
+// 9. Develop a menu driven program to fill the polygon using scan line algorithm
 #include <stdlib.h>
 #include <stdio.h>
 #include <GL/glut.h>
