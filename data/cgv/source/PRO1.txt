@@ -1,3 +1,6 @@
+/**1. Design, develop, and implement the Implement Brenham’s line drawing algorithm for all types of slope. **/
+
+
 #include<GL/glut.h>
 #include<stdio.h>
 int x1, y1, x2, y2;
