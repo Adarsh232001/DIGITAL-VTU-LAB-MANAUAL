@@ -1,3 +1,6 @@
+/** 5.  Design, develop, and implement the following Clip a lines using Cohen-Sutherland algorithm. **/
+
+
 #include <stdio.h>
 #include <GL/glut.h>
 
