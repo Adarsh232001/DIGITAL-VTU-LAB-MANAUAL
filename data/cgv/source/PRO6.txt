@@ -1,3 +1,7 @@
+/** 6. Design, develop, and implement To draw a simple shaded scene consisting of a tea pot on a table. Define suitably the
+position and properties of the light source along with the properties of the surfaces of the
+solid object used in the scene. **/
+
 #include<GL/glut.h>
 void teapot(GLfloat x,GLfloat y,GLfloat z)
 {
