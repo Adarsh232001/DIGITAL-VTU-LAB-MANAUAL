@@ -1,3 +1,6 @@
+/**3.  Design, develop, and implement the following Draw a colour cube and spin it using OpenGL transformation matrices. **/
+
+
 #include<stdlib.h>
 #include<GL/glut.h>
 GLfloat vertices[]= {-1, -1, -1,
