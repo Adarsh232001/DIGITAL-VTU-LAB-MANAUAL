@@ -1,4 +1,5 @@
 # DIGITAL-VTU-LAB-MANAUAL
+![visitors](https://visitor-badge.glitch.me/badge?page_id=Adarsh232001/DIGITAL-VTU-LAB-MANAUAL) <br/>
 Collaborated with [@NithinKumar9](https://github.com/NithinKumar9) <br/>
 Language used:- 
         [Python](https://www.python.org/downloads/)<br/>
